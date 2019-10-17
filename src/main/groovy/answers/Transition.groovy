@@ -23,18 +23,6 @@ class Transition {
         transition()
     }
 
-    def methodMissing(String methodName, args) {
-        throw new BadlyFormattedTransitionRecipe(methodName)
-    }
-
-    def propertyMissing(String name) {
-        throw new BadlyFormattedTransitionRecipe(name)
-    }
-
-    def propertyMissing(String name, def arg) {
-        throw new BadlyFormattedTransitionRecipe(name)
-    }
-
     def on(event) {
         new Transition(transitionEvent: event, stateFlow: stateFlow)
     }
@@ -47,12 +35,16 @@ class Transition {
         new Transition(transitionEvent: transitionEvent, stateFlow: new StateFlow(stateFlow.from, new State(state)))
     }
 
-    def fromState() {
-        stateFlow.from
+    def methodMissing(String methodName, args) {
+        throw new BadlyFormattedTransitionRecipe(methodName)
     }
 
-    def intoState() {
-        stateFlow.into
+    def propertyMissing(String name) {
+        throw new BadlyFormattedTransitionRecipe(name)
+    }
+
+    def propertyMissing(String name, def arg) {
+        throw new BadlyFormattedTransitionRecipe(name)
     }
 
     @Override
