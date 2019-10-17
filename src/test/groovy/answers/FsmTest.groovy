@@ -109,7 +109,7 @@ class FsmTest extends Specification {
         fsm = fsm.fire('event')
 
         then:
-        fsm.state() == new State(_initialState)
+        fsm.state == new State(_initialState)
     }
 
     def "if transition is not designed for current state - stay in current state"() {
@@ -128,7 +128,7 @@ class FsmTest extends Specification {
         fsm = fsm.fire(_event)
 
         then: 'stay in current state'
-        fsm.state() == new State(_state)
+        fsm.state == new State(_state)
     }
 
     def "if transition is designed for current state - move to stateInto"() {
@@ -150,7 +150,7 @@ class FsmTest extends Specification {
         fsm = fsm.fire(_event)
 
         then: 'stay in current state'
-        fsm.state() == new State(_stateTo)
+        fsm.state == new State(_stateTo)
     }
 
     def "if we are in initial state then returning to initial state means returning exact copy"() {

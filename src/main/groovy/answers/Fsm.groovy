@@ -10,14 +10,10 @@ class Fsm {
 
     Map<String, StateFlow> transitions
     State initial
-    State current
+    State state
 
     static Fsm create(Closure fsmRecipe) {
         FsmSpec.buildUsing fsmRecipe
-    }
-
-    def state() {
-        current
     }
 
     def returnToInitialState() {
@@ -26,7 +22,7 @@ class Fsm {
 
     def fire(event) {
         getTransitionFor(event)
-                .filter { it.from == current }
+                .filter { it.from == state }
                 .map { new Fsm(transitions, initial, it.into) }
                 .orElseGet { this }
     }
