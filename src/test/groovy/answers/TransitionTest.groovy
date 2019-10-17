@@ -19,30 +19,6 @@ class TransitionTest extends Specification {
         transition_after_on.transitionEvent == transition_event
     }
 
-    def "test from"() {
-        given:
-        def from_state = "test"
-        def transition = new Transition()
-
-        when:
-        def transition_after_from = transition.from(from_state)
-
-        then:
-        transition_after_from.fromState() == new State(from_state)
-    }
-
-    def "test to"() {
-        given:
-        def to_state = "test"
-        def transition = new Transition()
-
-        when:
-        def transition_after_to = transition.into(to_state)
-
-        then:
-        transition_after_to.intoState() == new State(to_state)
-    }
-
     def "test full tense: on().from().to()"() {
         given:
         def transition_state = "event"
@@ -57,17 +33,8 @@ class TransitionTest extends Specification {
         then:
         with(transition_after_on_from_to) {
             transitionEvent == transition_state
-            fromState() == new State(from_state)
-            intoState() == new State(to_state)
+            stateFlow == StateFlow.of(from_state, to_state)
         }
-    }
-
-    def "if word appears many times, only the last one occurrence is important"() {
-        when:
-        def transition_multiple_from = new Transition().from("from1").from("from2")
-
-        then:
-        transition_multiple_from.fromState() == new State("from2")
     }
 
     def "test toString"() {
@@ -92,53 +59,7 @@ class TransitionTest extends Specification {
         then:
         with(transition) {
             transitionEvent == _event
-            fromState() == new State(_fromState)
-            intoState() == new State(_toState)
-        }
-    }
-
-    def "make with only toState"() {
-        given:
-        def _toState = "toState"
-
-        when:
-        def transition = Transition.make {
-            into _toState
-        }
-
-        then:
-        with(transition) {
-            intoState() == new State(_toState)
-        }
-    }
-
-    def "make with only fromState"() {
-        given:
-        def _fromState = "fromState"
-
-        when:
-        def transition = Transition.make {
-            from _fromState
-        }
-
-        then:
-        with(transition) {
-            fromState() == new State(_fromState)
-        }
-    }
-
-    def "make with only transitionEvent"() {
-        given:
-        def _transitionEvent = "transitionEvent"
-
-        when:
-        def transition = Transition.make {
-            on _transitionEvent
-        }
-
-        then:
-        with(transition) {
-            transitionEvent == _transitionEvent
+            stateFlow == StateFlow.of(_fromState, _toState)
         }
     }
 
