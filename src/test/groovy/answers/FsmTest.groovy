@@ -184,6 +184,28 @@ class FsmTest extends Specification {
             transitions == fsmInState2.transitions
         }
     }
+
+    def 'when operation is illegal according to fsm specification - error'() {
+        when: 'wrongName is not defined '
+        Fsm.create {
+            wrongName
+        }
+
+        then:
+        InvalidFsmSpecificationOperation ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to fsm specification'
+    }
+
+    def 'when argument of the operation is illegal according to fsm specification - error'() {
+        when: 'initialState accepts only strings'
+        Fsm.create {
+            initialState 1
+        }
+
+        then:
+        InvalidFsmSpecificationOperation ex = thrown()
+        ex.message == 'Operation: initialState is invalid according to fsm specification'
+    }
 }
 
 
