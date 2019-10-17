@@ -2,6 +2,9 @@ package answers
 
 import groovy.transform.PackageScope
 
+/**
+ * Created by mtumilowicz on 2018-10-16.
+ */
 @PackageScope
 class FsmSpec {
 

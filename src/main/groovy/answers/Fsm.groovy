@@ -3,7 +3,9 @@ package answers
 import groovy.transform.Immutable
 import groovy.transform.ToString
 
-
+/**
+ * Created by mtumilowicz on 2018-10-16.
+ */
 @Immutable
 @ToString
 class Fsm {
