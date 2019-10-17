@@ -12,7 +12,7 @@ class Fsm {
     State initial
     State current
 
-    static Fsm load(Closure fsmRecipe) {
+    static Fsm create(Closure fsmRecipe) {
         FsmSpec.buildUsing fsmRecipe
     }
 
