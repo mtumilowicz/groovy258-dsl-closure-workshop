@@ -3,13 +3,13 @@ package answers
 import groovy.transform.PackageScope
 
 @PackageScope
-class FsmBuilder {
+class FsmSpec {
 
     private List<Transition> transitions = []
     private State initialState
 
     static Fsm buildUsing(Closure fsmRecipe) {
-        def fsmBuilder = new FsmBuilder()
+        def fsmBuilder = new FsmSpec()
         def fsm = fsmRecipe.rehydrate(fsmBuilder, this, fsmBuilder)
         fsm.resolveStrategy = Closure.DELEGATE_ONLY
         fsm()

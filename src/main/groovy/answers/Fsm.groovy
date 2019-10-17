@@ -13,7 +13,7 @@ class Fsm {
     State current
 
     static Fsm load(Closure fsmRecipe) {
-        FsmBuilder.buildUsing fsmRecipe
+        FsmSpec.buildUsing fsmRecipe
     }
 
     def state() {

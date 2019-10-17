@@ -2,26 +2,26 @@ package answers
 
 import spock.lang.Specification
 
-class FsmBuilderTest extends Specification {
+class FsmSpecTest extends Specification {
 
     def "apply() order of usage transition.on(), transition.from(), transition.to() method is not important"() {
 
         when:
-        def fsm = new FsmBuilder().add {
+        def fsm = new FsmSpec().add {
             on _event from _state1 into _state2
         }
                 .initialState(_state0)
                 .build()
 
         and:
-        def fsm1 = new FsmBuilder().add {
+        def fsm1 = new FsmSpec().add {
             from _state1 on _event into _state2
         }
                 .initialState(_state0)
                 .build()
 
         and:
-        def fsm2 = new FsmBuilder().add {
+        def fsm2 = new FsmSpec().add {
             into _state2 from _state1 on _event
         }
                 .initialState(_state0)
@@ -40,7 +40,7 @@ class FsmBuilderTest extends Specification {
     def "build create Fsm"() {
 
         given:
-        def builder = new FsmBuilder()
+        def builder = new FsmSpec()
 
         when:
         def fsm = builder.add {
