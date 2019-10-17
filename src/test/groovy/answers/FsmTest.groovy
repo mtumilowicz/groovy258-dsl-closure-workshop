@@ -192,7 +192,7 @@ class FsmTest extends Specification {
         }
 
         then:
-        InvalidFsmSpecificationOperation ex = thrown()
+        InvalidFsmSpecOperation ex = thrown()
         ex.message == 'Operation: wrongName is invalid according to fsm specification'
     }
 
@@ -203,8 +203,30 @@ class FsmTest extends Specification {
         }
 
         then:
-        InvalidFsmSpecificationOperation ex = thrown()
+        InvalidFsmSpecOperation ex = thrown()
         ex.message == 'Operation: initialState is invalid according to fsm specification'
+    }
+
+    def 'when operation is illegal according to transition specification - error'() {
+        when: 'wrongName is not defined'
+        Fsm.create {
+            add { wrongName }
+        }
+
+        then:
+        InvalidTransitionSpecOperation ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation is illegal according to transition specification - error'() {
+        when: 'initialState accepts only strings'
+        Fsm.create {
+            add { on 1 }
+        }
+
+        then:
+        InvalidTransitionSpecOperation ex = thrown()
+        ex.message == 'Operation: on is invalid according to transition specification'
     }
 }
 

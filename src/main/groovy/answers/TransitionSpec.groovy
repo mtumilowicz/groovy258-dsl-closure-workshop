@@ -21,7 +21,7 @@ class TransitionSpec {
         transitionSpec.build()
     }
 
-    def on(event) {
+    def on(String event) {
         transitionEvent = event
         this
     }
@@ -41,14 +41,14 @@ class TransitionSpec {
     }
 
     def methodMissing(String methodName, args) {
-        throw new BadlyFormattedTransitionRecipe(methodName)
+        throw new InvalidTransitionSpecOperation(methodName)
     }
 
     def propertyMissing(String name) {
-        throw new BadlyFormattedTransitionRecipe(name)
+        throw new InvalidTransitionSpecOperation(name)
     }
 
     def propertyMissing(String name, def arg) {
-        throw new BadlyFormattedTransitionRecipe(name)
+        throw new InvalidTransitionSpecOperation(name)
     }
 }

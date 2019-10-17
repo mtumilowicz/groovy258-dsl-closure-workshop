@@ -34,14 +34,14 @@ class FsmSpec {
     }
 
     def methodMissing(String name, def args) {
-        throw new InvalidFsmSpecificationOperation(name)
+        throw new InvalidFsmSpecOperation(name)
     }
 
     def propertyMissing(String name) {
-        throw new InvalidFsmSpecificationOperation(name)
+        throw new InvalidFsmSpecOperation(name)
     }
 
     def propertyMissing(String name, def arg) {
-        throw new InvalidFsmSpecificationOperation(name)
+        throw new InvalidFsmSpecOperation(name)
     }
 }
