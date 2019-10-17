@@ -5,7 +5,7 @@ import groovy.transform.PackageScope
 @PackageScope
 class FsmBuilder {
 
-    private Map<String, StateFlow> map = [:]
+    private List<Transition> transitions = []
     private State initialState
 
     static Fsm buildUsing(Closure fsmRecipe) {
@@ -22,15 +22,14 @@ class FsmBuilder {
     }
 
     def add(Closure transitionRecipe) {
-        addTransition(Transition.make(transitionRecipe))
+        transitions << Transition.make(transitionRecipe)
         this
     }
 
-    def addTransition(Transition transition) {
-        map[transition.transitionEvent] = transition.stateFlow
-    }
-
     def build() {
+        def map = transitions.collectEntries {
+            [(it.transitionEvent): it.stateFlow]
+        }
         new Fsm(map, initialState, initialState)
     }
 

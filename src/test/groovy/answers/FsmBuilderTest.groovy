@@ -4,24 +4,6 @@ import spock.lang.Specification
 
 class FsmBuilderTest extends Specification {
 
-    def "apply() building map of Transition word"() {
-
-        given:
-        def builder = new FsmBuilder()
-
-        when:
-        builder.add {
-            on _event from _state1 into _state2
-        }
-
-        then:
-        builder.map[_event] == StateFlow.of(_state1, _state2)
-
-        where:
-        _event  | _state1  | _state2
-        "event" | "state1" | "state2"
-    }
-
     def "apply() order of usage transition.on(), transition.from(), transition.to() method is not important"() {
 
         when:
