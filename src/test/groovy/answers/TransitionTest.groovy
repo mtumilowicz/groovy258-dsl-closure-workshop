@@ -72,7 +72,7 @@ class TransitionTest extends Specification {
 
     def "test toString"() {
         given:
-        def transition = new Transition(transitionEvent: "event", stateFlow: new StateFlow("fromState", "toState"))
+        def transition = new Transition(transitionEvent: "event", stateFlow: StateFlow.of("fromState", "toState"))
 
         expect:
         transition.toString() == "event: fromState->toState"

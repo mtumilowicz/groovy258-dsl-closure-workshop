@@ -1,21 +1,18 @@
 package answers
 
-import groovy.transform.EqualsAndHashCode
+
+import groovy.transform.Immutable
 import groovy.transform.PackageScope
 
-@EqualsAndHashCode
+@Immutable
 @PackageScope
 class StateFlow {
 
     State from
     State into
 
-    StateFlow() {
-    }
-
-    StateFlow(String from, String into) {
-        this.from = new State(from)
-        this.into = new State(into)
+    static def of(from, into) {
+        new StateFlow(new State(from), new State(into))
     }
 
     @Override

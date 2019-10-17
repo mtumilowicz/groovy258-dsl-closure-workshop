@@ -15,7 +15,7 @@ class FsmBuilderTest extends Specification {
         }
 
         then:
-        builder.map[_event] == new StateFlow(_state1, _state2)
+        builder.map[_event] == StateFlow.of(_state1, _state2)
 
         where:
         _event  | _state1  | _state2
@@ -72,8 +72,8 @@ class FsmBuilderTest extends Specification {
         then:
         fsm == new Fsm(initial: new State(_state0),
                 transitions: [
-                        (_event) : new StateFlow(_state1, _state2),
-                        (_event1): new StateFlow(_state2, _state3)
+                        (_event) : StateFlow.of(_state1, _state2),
+                        (_event1): StateFlow.of(_state2, _state3)
                 ],
                 current: new State(_state0))
 

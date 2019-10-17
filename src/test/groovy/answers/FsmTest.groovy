@@ -7,10 +7,10 @@ class FsmTest extends Specification {
     def "Fsm is immutable"() {
 
         given:
-        def fsm = new Fsm("transitions": ["event": new StateFlow("state1", "state2")], initial: new State("state0"))
+        def fsm = new Fsm("transitions": ["event": StateFlow.of("state1", "state2")], initial: new State("state0"))
 
         when:
-        fsm.transitions["events2"] = new StateFlow("state2", "state3")
+        fsm.transitions["events2"] = StateFlow.of("state2", "state3")
 
         then:
         thrown(UnsupportedOperationException)
@@ -26,8 +26,8 @@ class FsmTest extends Specification {
         }
 
         then:
-        fsm.transitions[_event1] == new StateFlow(_state1, _state2)
-        fsm.transitions[_event2] == new StateFlow(_state2, _state3)
+        fsm.transitions[_event1] == StateFlow.of(_state1, _state2)
+        fsm.transitions[_event2] == StateFlow.of(_state2, _state3)
 
         where:
         _event1  | _event2  | _state0  | _state1  | _state2 | _state3

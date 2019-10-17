@@ -1,11 +1,13 @@
 package answers
 
+import groovy.transform.Immutable
 import groovy.transform.PackageScope
 
 /**
  * Created by mtumilowicz on 2018-08-29.
  */
 @PackageScope
+@Immutable
 class Transition {
 
     String transitionEvent = ""
@@ -34,18 +36,15 @@ class Transition {
     }
 
     def on(event) {
-        transitionEvent = event
-        this
+        new Transition(transitionEvent: event, stateFlow: stateFlow)
     }
 
     def from(String state) {
-        stateFlow.from = new State(state)
-        this
+        new Transition(transitionEvent: transitionEvent, stateFlow: new StateFlow(new State(state), stateFlow.into))
     }
 
     def into(String state) {
-        stateFlow.into = new State(state)
-        this
+        new Transition(transitionEvent: transitionEvent, stateFlow: new StateFlow(stateFlow.from, new State(state)))
     }
 
     def fromState() {
