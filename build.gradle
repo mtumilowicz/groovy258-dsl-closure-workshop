@@ -9,9 +9,9 @@ repositories {
     mavenCentral()
 }
 
-//test {
-//    exclude '**/workshop*'
-//}
+test {
+    exclude '**/workshop*'
+}
 
 dependencies {
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.8'
