@@ -1,28 +1,23 @@
 package workshop
-
 // immutable, toString
 class Step6_FsmWorkshop {
 
-    Map<String, Step2_StateFlowWorkshop> transitions
-    Step1_StateWorkshop initial
-    Step1_StateWorkshop state
+    // fsm in the simplest form should contain: transitions map, initial state, and current state
 
-    static Step6_FsmWorkshop create(Closure fsmRecipe) {
-        Step7_FsmSpecWorkshop.buildUsing fsmRecipe
+    static Step6_FsmWorkshop create(fsmRecipe) {
+        // invoke buildUsing method from Step7_FsmSpecWorkshop
     }
 
-    def returnToInitialState() {
-        new Step6_FsmWorkshop(transitions, initial, initial)
+    Step6_FsmWorkshop returnToInitialState() {
+        // copy of this with initial state as a current state
     }
 
-    def fire(event) {
-        getTransitionFor(event)
-                .filter { it.from == state }
-                .map { new Step6_FsmWorkshop(transitions, initial, it.into) }
-                .orElseGet { this }
+    Step6_FsmWorkshop fire(event) {
+        // if transition is possible (stateFrom is equal to current state) move to stateInto
+        // otherwise do nothing
     }
 
-    private def getTransitionFor(event) {
-        Optional.ofNullable(transitions[event])
+    private Optional<Step2_StateFlowWorkshop> getTransitionFor(String event) {
+        // return stateFlow for given event (wrapped in Optional)
     }
 }

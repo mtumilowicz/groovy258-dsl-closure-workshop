@@ -1,7 +1,5 @@
 package workshop
 
 class Step8_InvalidFsmSpecOperationWorkshop extends RuntimeException {
-    Step8_InvalidFsmSpecOperationWorkshop(String message) {
-        super("Operation: ${message} is invalid according to fsm specification")
-    }
+    // create with appropriate message:Operation: operation is invalid according to transition specification
 }

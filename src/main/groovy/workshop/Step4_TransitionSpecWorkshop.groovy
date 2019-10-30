@@ -7,7 +7,7 @@ class Step4_TransitionSpecWorkshop {
     // fields: event, stateFrom, stateTo
 
     // builder method of Step3_TransitionWorkshop
-    static Step3_TransitionWorkshop make(Closure transitionRecipe) {
+    static Step3_TransitionWorkshop make(transitionRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification
         // set delegate_only strategy to rehydrated closure
@@ -15,15 +15,15 @@ class Step4_TransitionSpecWorkshop {
         // build transition from specification
     }
 
-    def on(String event) {
+    def on(event) {
         // set event, return this
     }
 
-    def from(String state) {
+    def from(state) {
         // set state, return this
     }
 
-    def into(String state) {
+    def into(state) {
         // set state, return this
     }
 
@@ -31,11 +31,11 @@ class Step4_TransitionSpecWorkshop {
         // build Step3_TransitionWorkshop
     }
 
-    def methodMissing(String methodName, args) {
-        throw new Step5_InvalidTransitionSpecOperationWorkshop(methodName)
+    def methodMissing(methodName, args) {
+        // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
     }
 
-    def propertyMissing(String name) {
-        throw new Step5_InvalidTransitionSpecOperationWorkshop(name)
+    def propertyMissing(propertyName) {
+        // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
     }
 }
