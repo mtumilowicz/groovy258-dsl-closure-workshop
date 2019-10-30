@@ -32,7 +32,7 @@ class Step4_TransitionSpecAnswer {
         this
     }
 
-    def build() {
+    Step3_TransitionAnswer build() {
         new Step3_TransitionAnswer(event: event, stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo))
     }
 
