@@ -43,8 +43,4 @@ class Step4_TransitionSpecAnswer {
     def propertyMissing(String name) {
         throw new Step5_InvalidTransitionSpecOperationAnswer(name)
     }
-
-    def propertyMissing(String name, def arg) {
-        throw new Step5_InvalidTransitionSpecOperationAnswer(name)
-    }
 }

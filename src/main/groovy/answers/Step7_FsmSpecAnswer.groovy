@@ -40,8 +40,4 @@ class Step7_FsmSpecAnswer {
     def propertyMissing(String name) {
         throw new Step8_InvalidFsmSpecOperationAnswer(name)
     }
-
-    def propertyMissing(String name, def arg) {
-        throw new Step8_InvalidFsmSpecOperationAnswer(name)
-    }
 }
