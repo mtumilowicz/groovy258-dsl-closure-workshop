@@ -6,7 +6,7 @@ class Step4_TransitionSpecWorkshop {
     // transition spec is as simple as it can be - it is a builder
     // fields: event, stateFrom, stateTo
 
-    // builder method of Step3_TransitionWorkshop
+    // build Step3_TransitionWorkshop
     static Step3_TransitionWorkshop make(transitionRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification

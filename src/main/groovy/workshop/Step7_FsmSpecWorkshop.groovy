@@ -5,39 +5,36 @@ import groovy.transform.PackageScope
 @PackageScope
 class Step7_FsmSpecWorkshop {
 
-    private List<Step3_TransitionWorkshop> transitions = []
-    private Step1_StateWorkshop initialState
+    // fsm spec is as simple as it can be - it is a builder
+    // fields: list of transitions, initial state
 
-    static Step6_FsmWorkshop buildUsing(Closure fsmRecipe) {
-        def fsmBuilder = new Step7_FsmSpecWorkshop()
-        def fsm = fsmRecipe.rehydrate(fsmBuilder, this, fsmBuilder)
-        fsm.resolveStrategy = Closure.DELEGATE_ONLY
-        fsm()
-        fsmBuilder.build()
+    // build Step6_FsmWorkshop
+    static Step6_FsmWorkshop buildUsing(fsmRecipe) {
+        // create object of specification
+        // rehydrate closure argument: delegate - specification, owner - this, this -> specification
+        // set delegate_only strategy to rehydrated closure
+        // invoke rehydrated closure
+        // build transition from specification
     }
 
-    def initialState(String state) {
-        initialState = new Step1_StateWorkshop(state)
-        this
+    def initialState(state) {
+        // set initial state, return this
     }
 
-    def add(Closure transitionRecipe) {
-        transitions << Step3_TransitionWorkshop.make(transitionRecipe)
-        this
+    def add(transitionRecipe) {
+        // create transition and put it in transitions, return this
     }
 
-    def build() {
-        def map = transitions.collectEntries {
-            [(it.transitionEvent): it.stateFlow]
-        }
-        new Step6_FsmWorkshop(map, initialState, initialState)
+    Step6_FsmWorkshop build() {
+        // create map with entries (event, stateFlow)
+        // return Step6_FsmWorkshop
     }
 
-    def methodMissing(String name, def args) {
-        throw new Step8_InvalidFsmSpecOperationWorkshop(name)
+    def methodMissing(methodName, args) {
+        throw new Step8_InvalidFsmSpecOperationWorkshop(methodName)
     }
 
-    def propertyMissing(String name) {
-        throw new Step8_InvalidFsmSpecOperationWorkshop(name)
+    def propertyMissing(propertyName) {
+        throw new Step8_InvalidFsmSpecOperationWorkshop(propertyName)
     }
 }
