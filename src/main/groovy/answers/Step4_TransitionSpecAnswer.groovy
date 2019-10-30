@@ -9,7 +9,7 @@ class Step4_TransitionSpecAnswer {
     String stateFrom
     String stateTo
 
-    static Step3_TransitionAnswer make(Closure transitionRecipe) {
+    static Step3_TransitionAnswer make(transitionRecipe) {
         def transitionSpec = new Step4_TransitionSpecAnswer()
         def transition = transitionRecipe.rehydrate(transitionSpec, this, transitionSpec)
         transition.resolveStrategy = Closure.DELEGATE_ONLY
@@ -17,17 +17,17 @@ class Step4_TransitionSpecAnswer {
         transitionSpec.build()
     }
 
-    def on(String event) {
+    def on(event) {
         this.event = event
         this
     }
 
-    def from(String state) {
+    def from(state) {
         stateFrom = state
         this
     }
 
-    def into(String state) {
+    def into(state) {
         stateTo = state
         this
     }
@@ -36,11 +36,11 @@ class Step4_TransitionSpecAnswer {
         new Step3_TransitionAnswer(event: event, stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo))
     }
 
-    def methodMissing(String methodName, args) {
+    def methodMissing(methodName, args) {
         throw new Step5_InvalidTransitionSpecOperationAnswer(methodName)
     }
 
-    def propertyMissing(String name) {
-        throw new Step5_InvalidTransitionSpecOperationAnswer(name)
+    def propertyMissing(propertyName) {
+        throw new Step5_InvalidTransitionSpecOperationAnswer(propertyName)
     }
 }
