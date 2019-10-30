@@ -1,4 +1,4 @@
-package workshop
+package answers
 
 import groovy.transform.Immutable
 import groovy.transform.ToString
@@ -8,24 +8,24 @@ import groovy.transform.ToString
  */
 @Immutable
 @ToString
-class Fsm {
+class FsmAnswer {
 
-    Map<String, StateFlow> transitions
-    State initial
-    State state
+    Map<String, StateFlowAnswer> transitions
+    StateAnswer initial
+    StateAnswer state
 
-    static Fsm create(Closure fsmRecipe) {
-        FsmSpec.buildUsing fsmRecipe
+    static FsmAnswer create(Closure fsmRecipe) {
+        FsmSpecAnswer.buildUsing fsmRecipe
     }
 
     def returnToInitialState() {
-        new Fsm(transitions, initial, initial)
+        new FsmAnswer(transitions, initial, initial)
     }
 
     def fire(event) {
         getTransitionFor(event)
                 .filter { it.from == state }
-                .map { new Fsm(transitions, initial, it.into) }
+                .map { new FsmAnswer(transitions, initial, it.into) }
                 .orElseGet { this }
     }
 

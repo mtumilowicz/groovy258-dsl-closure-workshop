@@ -8,13 +8,13 @@ import groovy.transform.PackageScope
  */
 @PackageScope
 @Immutable
-class Transition {
+class TransitionAnswer {
 
     String transitionEvent = ""
-    StateFlow stateFlow = new StateFlow()
+    StateFlowAnswer stateFlow = new StateFlowAnswer()
 
-    static Transition make(Closure transitionRecipe) {
-        TransitionSpec.make transitionRecipe
+    static TransitionAnswer make(Closure transitionRecipe) {
+        TransitionSpecAnswer.make transitionRecipe
     }
 
     @Override

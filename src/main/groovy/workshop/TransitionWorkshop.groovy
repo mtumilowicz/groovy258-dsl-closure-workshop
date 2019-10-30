@@ -9,13 +9,13 @@ import groovy.transform.PackageScope
  */
 @PackageScope
 @Immutable
-class Transition {
+class TransitionWorkshop {
 
     String transitionEvent = ""
-    StateFlow stateFlow = new StateFlow()
+    StateFlowWorkshop stateFlow = new StateFlowWorkshop()
 
-    static Transition make(Closure transitionRecipe) {
-        TransitionSpec.make transitionRecipe
+    static TransitionWorkshop make(Closure transitionRecipe) {
+        TransitionSpecWorkshop.make transitionRecipe
     }
 
     @Override
