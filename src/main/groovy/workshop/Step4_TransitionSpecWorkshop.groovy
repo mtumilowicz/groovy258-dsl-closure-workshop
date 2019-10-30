@@ -7,14 +7,14 @@ import groovy.transform.PackageScope
  * Created by mtumilowicz on 2018-10-16.
  */
 @PackageScope
-class TransitionSpecWorkshop {
+class Step4_TransitionSpecWorkshop {
 
     String transitionEvent
     String stateFrom
     String stateTo
 
-    static TransitionWorkshop make(Closure transitionRecipe) {
-        def transitionSpec = new TransitionSpecWorkshop()
+    static Step3_TransitionWorkshop make(Closure transitionRecipe) {
+        def transitionSpec = new Step4_TransitionSpecWorkshop()
         def transition = transitionRecipe.rehydrate(transitionSpec, this, transitionSpec)
         transition.resolveStrategy = Closure.DELEGATE_ONLY
         transition()
@@ -37,18 +37,18 @@ class TransitionSpecWorkshop {
     }
 
     def build() {
-        new TransitionWorkshop(transitionEvent: transitionEvent, stateFlow: StateFlowWorkshop.of(stateFrom, stateTo))
+        new Step3_TransitionWorkshop(transitionEvent: transitionEvent, stateFlow: Step2_StateFlowWorkshop.of(stateFrom, stateTo))
     }
 
     def methodMissing(String methodName, args) {
-        throw new InvalidTransitionSpecOperationWorkshop(methodName)
+        throw new Step5_InvalidTransitionSpecOperationWorkshop(methodName)
     }
 
     def propertyMissing(String name) {
-        throw new InvalidTransitionSpecOperationWorkshop(name)
+        throw new Step5_InvalidTransitionSpecOperationWorkshop(name)
     }
 
     def propertyMissing(String name, def arg) {
-        throw new InvalidTransitionSpecOperationWorkshop(name)
+        throw new Step5_InvalidTransitionSpecOperationWorkshop(name)
     }
 }

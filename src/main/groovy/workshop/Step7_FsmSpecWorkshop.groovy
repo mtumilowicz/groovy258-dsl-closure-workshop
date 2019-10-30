@@ -7,13 +7,13 @@ import groovy.transform.PackageScope
  * Created by mtumilowicz on 2018-10-16.
  */
 @PackageScope
-class FsmSpecWorkshop {
+class Step7_FsmSpecWorkshop {
 
-    private List<TransitionWorkshop> transitions = []
-    private StateWorkshop initialState
+    private List<Step3_TransitionWorkshop> transitions = []
+    private Step1_StateWorkshop initialState
 
-    static FsmWorkshop buildUsing(Closure fsmRecipe) {
-        def fsmBuilder = new FsmSpecWorkshop()
+    static Step6_FsmWorkshop buildUsing(Closure fsmRecipe) {
+        def fsmBuilder = new Step7_FsmSpecWorkshop()
         def fsm = fsmRecipe.rehydrate(fsmBuilder, this, fsmBuilder)
         fsm.resolveStrategy = Closure.DELEGATE_ONLY
         fsm()
@@ -21,12 +21,12 @@ class FsmSpecWorkshop {
     }
 
     def initialState(String state) {
-        initialState = new StateWorkshop(state)
+        initialState = new Step1_StateWorkshop(state)
         this
     }
 
     def add(Closure transitionRecipe) {
-        transitions << TransitionWorkshop.make(transitionRecipe)
+        transitions << Step3_TransitionWorkshop.make(transitionRecipe)
         this
     }
 
@@ -34,18 +34,18 @@ class FsmSpecWorkshop {
         def map = transitions.collectEntries {
             [(it.transitionEvent): it.stateFlow]
         }
-        new FsmWorkshop(map, initialState, initialState)
+        new Step6_FsmWorkshop(map, initialState, initialState)
     }
 
     def methodMissing(String name, def args) {
-        throw new InvalidFsmSpecOperationWorkshop(name)
+        throw new Step8_InvalidFsmSpecOperationWorkshop(name)
     }
 
     def propertyMissing(String name) {
-        throw new InvalidFsmSpecOperationWorkshop(name)
+        throw new Step8_InvalidFsmSpecOperationWorkshop(name)
     }
 
     def propertyMissing(String name, def arg) {
-        throw new InvalidFsmSpecOperationWorkshop(name)
+        throw new Step8_InvalidFsmSpecOperationWorkshop(name)
     }
 }

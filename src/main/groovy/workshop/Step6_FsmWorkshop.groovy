@@ -8,24 +8,24 @@ import groovy.transform.ToString
  */
 @Immutable
 @ToString
-class FsmWorkshop {
+class Step6_FsmWorkshop {
 
-    Map<String, StateFlowWorkshop> transitions
-    StateWorkshop initial
-    StateWorkshop state
+    Map<String, Step2_StateFlowWorkshop> transitions
+    Step1_StateWorkshop initial
+    Step1_StateWorkshop state
 
-    static FsmWorkshop create(Closure fsmRecipe) {
-        FsmSpecWorkshop.buildUsing fsmRecipe
+    static Step6_FsmWorkshop create(Closure fsmRecipe) {
+        Step7_FsmSpecWorkshop.buildUsing fsmRecipe
     }
 
     def returnToInitialState() {
-        new FsmWorkshop(transitions, initial, initial)
+        new Step6_FsmWorkshop(transitions, initial, initial)
     }
 
     def fire(event) {
         getTransitionFor(event)
                 .filter { it.from == state }
-                .map { new FsmWorkshop(transitions, initial, it.into) }
+                .map { new Step6_FsmWorkshop(transitions, initial, it.into) }
                 .orElseGet { this }
     }
 
