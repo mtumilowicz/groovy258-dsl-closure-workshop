@@ -5,4 +5,8 @@ class Step1_StateWorkshop {
 
     // one field - encapsulating state
 
+    @Override
+    String toString() {
+        // simplest toString method
+    }
 }

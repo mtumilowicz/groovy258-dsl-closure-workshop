@@ -1,39 +1,34 @@
 package workshop
 
-import groovy.transform.PackageScope
-
-@PackageScope
+// package scope
 class Step4_TransitionSpecWorkshop {
 
-    String transitionEvent
-    String stateFrom
-    String stateTo
+    // transition spec is as simple as it can be - it is a builder
+    // fields: event, stateFrom, stateTo
 
+    // builder method of Step3_TransitionWorkshop
     static Step3_TransitionWorkshop make(Closure transitionRecipe) {
-        def transitionSpec = new Step4_TransitionSpecWorkshop()
-        def transition = transitionRecipe.rehydrate(transitionSpec, this, transitionSpec)
-        transition.resolveStrategy = Closure.DELEGATE_ONLY
-        transition()
-        transitionSpec.build()
+        // create object of specification
+        // rehydrate closure argument: delegate - specification, owner - this, this -> specification
+        // set delegate_only strategy to rehydrated closure
+        // invoke rehydrated closure
+        // build transition from specification
     }
 
     def on(String event) {
-        transitionEvent = event
-        this
+        // set event, return this
     }
 
     def from(String state) {
-        stateFrom = state
-        this
+        // set state, return this
     }
 
     def into(String state) {
-        stateTo = state
-        this
+        // set state, return this
     }
 
-    def build() {
-        new Step3_TransitionWorkshop(transitionEvent: transitionEvent, stateFlow: Step2_StateFlowWorkshop.of(stateFrom, stateTo))
+    Step3_TransitionWorkshop build() {
+        // build Step3_TransitionWorkshop
     }
 
     def methodMissing(String methodName, args) {
@@ -41,10 +36,6 @@ class Step4_TransitionSpecWorkshop {
     }
 
     def propertyMissing(String name) {
-        throw new Step5_InvalidTransitionSpecOperationWorkshop(name)
-    }
-
-    def propertyMissing(String name, def arg) {
         throw new Step5_InvalidTransitionSpecOperationWorkshop(name)
     }
 }

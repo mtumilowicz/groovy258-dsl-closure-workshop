@@ -12,6 +12,5 @@ class Step2_StateFlowWorkshop {
     @Override
     String toString() {
         // meaningful toString method, stateFrom->stateInto
-        ''
     }
 }
