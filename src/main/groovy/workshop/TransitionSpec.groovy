@@ -1,4 +1,4 @@
-package answers
+package workshop
 
 
 import groovy.transform.PackageScope
