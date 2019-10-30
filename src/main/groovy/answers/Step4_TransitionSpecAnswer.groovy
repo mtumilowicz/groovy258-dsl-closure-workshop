@@ -5,7 +5,7 @@ import groovy.transform.PackageScope
 @PackageScope
 class Step4_TransitionSpecAnswer {
 
-    String transitionEvent
+    String event
     String stateFrom
     String stateTo
 
@@ -18,7 +18,7 @@ class Step4_TransitionSpecAnswer {
     }
 
     def on(String event) {
-        transitionEvent = event
+        this.event = event
         this
     }
 
@@ -33,7 +33,7 @@ class Step4_TransitionSpecAnswer {
     }
 
     def build() {
-        new Step3_TransitionAnswer(transitionEvent: transitionEvent, stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo))
+        new Step3_TransitionAnswer(event: event, stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo))
     }
 
     def methodMissing(String methodName, args) {

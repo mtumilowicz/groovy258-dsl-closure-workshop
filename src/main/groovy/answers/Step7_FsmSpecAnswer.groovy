@@ -28,7 +28,7 @@ class Step7_FsmSpecAnswer {
 
     def build() {
         def map = transitions.collectEntries {
-            [(it.transitionEvent): it.stateFlow]
+            [(it.event): it.stateFlow]
         }
         new Step6_FsmAnswer(map, initialState, initialState)
     }

@@ -7,7 +7,7 @@ import groovy.transform.PackageScope
 @Immutable
 class Step3_TransitionAnswer {
 
-    String transitionEvent = ''
+    String event = ''
     Step2_StateFlowAnswer stateFlow = new Step2_StateFlowAnswer()
 
     static Step3_TransitionAnswer make(Closure transitionRecipe) {
@@ -16,6 +16,6 @@ class Step3_TransitionAnswer {
 
     @Override
     String toString() {
-        "$transitionEvent: $stateFlow"
+        "$event: $stateFlow"
     }
 }
