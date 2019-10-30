@@ -6,13 +6,13 @@ import groovy.transform.Immutable
  * Created by mtumilowicz on 2018-10-16.
  */
 @Immutable
-class StateFlowAnswer {
+class Step2_StateFlowAnswer {
 
-    StateAnswer from
-    StateAnswer into
+    Step1_StateAnswer from
+    Step1_StateAnswer into
 
     static def of(from, into) {
-        new StateFlowAnswer(new StateAnswer(from), new StateAnswer(into))
+        new Step2_StateFlowAnswer(new Step1_StateAnswer(from), new Step1_StateAnswer(into))
     }
 
     @Override
