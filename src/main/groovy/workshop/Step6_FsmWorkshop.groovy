@@ -1,10 +1,6 @@
 package workshop
 
-import groovy.transform.Immutable
-import groovy.transform.ToString
-
-@Immutable
-@ToString
+// immutable, toString
 class Step6_FsmWorkshop {
 
     Map<String, Step2_StateFlowWorkshop> transitions

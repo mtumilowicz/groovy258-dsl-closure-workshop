@@ -1,14 +1,8 @@
 package workshop
 
-import groovy.transform.Immutable
-
-@Immutable
+// should be immutable
 class Step1_StateWorkshop {
 
-    String raw
+    // one field - encapsulating state
 
-    @Override
-    String toString() {
-        raw
-    }
 }

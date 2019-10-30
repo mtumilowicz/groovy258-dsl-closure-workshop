@@ -1,19 +1,17 @@
 package workshop
 
-import groovy.transform.Immutable
-
-@Immutable
+// immutable
 class Step2_StateFlowWorkshop {
 
-    Step1_StateWorkshop from
-    Step1_StateWorkshop into
+    // state flow encapsulates stateFrom -> stateInto
 
     static def of(from, into) {
-        new Step2_StateFlowWorkshop(new Step1_StateWorkshop(from), new Step1_StateWorkshop(into))
+        // factory method
     }
 
     @Override
     String toString() {
-        "$from->$into"
+        // meaningful toString method, stateFrom->stateInto
+        ''
     }
 }

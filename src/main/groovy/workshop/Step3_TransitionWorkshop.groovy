@@ -1,13 +1,9 @@
 package workshop
 
-import groovy.transform.Immutable
-import groovy.transform.PackageScope
-
-@PackageScope
-@Immutable
+// package scope, immutable
 class Step3_TransitionWorkshop {
 
-    String transitionEvent = ""
+    String transitionEvent = ''
     Step2_StateFlowWorkshop stateFlow = new Step2_StateFlowWorkshop()
 
     static Step3_TransitionWorkshop make(Closure transitionRecipe) {
