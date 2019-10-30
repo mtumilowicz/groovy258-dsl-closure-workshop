@@ -3,9 +3,6 @@ package workshop
 import groovy.transform.Immutable
 import groovy.transform.ToString
 
-/**
- * Created by mtumilowicz on 2018-10-16.
- */
 @Immutable
 @ToString
 class Step6_FsmWorkshop {
