@@ -1,9 +1,8 @@
 package workshop
 
 // immutable
+// encapsulates stateFrom -> stateInto, hint: two fields - stateFrom, stateInto
 class Step2_StateFlowWorkshop {
-
-    // state flow encapsulates stateFrom -> stateInto
 
     static def of(from, into) {
         // factory method

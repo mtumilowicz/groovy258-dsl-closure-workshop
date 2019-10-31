@@ -1,16 +1,14 @@
 package workshop
 
 // package scope
+// it is a Step6_FsmWorkshop builder, hint: two fields - list of transitions, initial state
 class Step7_FsmSpecWorkshop {
-
-    // fsm spec is as simple as it can be - it is a builder
-    // fields: list of transitions, initial state
 
     // build Step6_FsmWorkshop
     static Step6_FsmWorkshop buildUsing(fsmRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification
-        // set delegate_only strategy to rehydrated closure
+        // set strategy of rehydrated closure to delegate_only
         // invoke rehydrated closure
         // build transition from specification
     }
@@ -21,10 +19,11 @@ class Step7_FsmSpecWorkshop {
 
     def add(transitionRecipe) {
         // create transition and put it in transitions, return this
+        // hint: <<, Step3_TransitionWorkshop.make
     }
 
     Step6_FsmWorkshop build() {
-        // create map with entries (event, stateFlow)
+        // create map with entries (event, stateFlow), hint: transitions.collectEntries {}
         // return Step6_FsmWorkshop
     }
 

@@ -1,9 +1,8 @@
 package workshop
 
 // should be immutable
+// encapsulates state, hint: one field - state
 class Step1_StateWorkshop {
-
-    // one field - encapsulating state
 
     @Override
     String toString() {

@@ -1,16 +1,16 @@
 package workshop
 
 // package scope
+// it is a Step3_TransitionWorkshop builder
 class Step4_TransitionSpecWorkshop {
 
-    // transition spec is as simple as it can be - it is a builder
-    // fields: event, stateFrom, stateTo
+    // hint: three fields - event, stateFrom, stateTo
 
     // build Step3_TransitionWorkshop
     static Step3_TransitionWorkshop make(transitionRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification
-        // set delegate_only strategy to rehydrated closure
+        // set strategy of rehydrated closure to delegate_only
         // invoke rehydrated closure
         // build transition from specification
     }
