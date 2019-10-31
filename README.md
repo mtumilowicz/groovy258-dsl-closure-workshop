@@ -41,10 +41,17 @@
     * **delegate** corresponds to a third party object where methods 
     calls or properties are resolved whenever the receiver of the message 
     is not defined
+    * while closure-this and closure-owner refer to the lexical scope of a closure, the delegate is a user defined 
+    object that a closure will use
     ```
     class X {
         def hello() {
             println "hello from X"
+        }
+  
+        def hello2() {
+            def hi = { hello() }
+            hi()
         }
     }
     
@@ -72,21 +79,21 @@ references and methods to the delegate first then the owner.
 * others covered in: https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
 
 ## dsl
-**Domain-Specific Languages** are small languages, focused on a particular 
+* **Domain-Specific Languages** are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
-code without having to be  programming experts.  
-DSLs come in two main forms:
-* **external** - language that's parsed independently of the host general purpose 
-language, examples: `regular expressions` and `CSS`.
-* **internal** - particular form of `API` in a host general purpose language, often 
-referred to as a fluent interface, examples: `Spock` and `Mockito`.
+code without having to be  programming experts
+* DSLs come in two main forms:
+    * **external** - language that's parsed independently of the host general purpose 
+    language, examples: `regular expressions` and `CSS`
+    * **internal** - particular form of `API` in a host general purpose language, often 
+    referred to as a fluent interface, examples: `Spock` and `Mockito`
 
-`Groovy` has many features that make it great for writing `DSLs`:
-* [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
-* Parentheses and dots `(.)` are optional.
-* The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
-* [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
-`propertyMissing` features.
+* `Groovy` has many features that make it great for writing `DSLs`:
+    * [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
+    * parentheses and dots `(.)` are optional
+    * the ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
+    * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
+    `propertyMissing` features
 
 ### optional parentheses and dots
 In `Groovy` it's possible to omit parentheses and dots
