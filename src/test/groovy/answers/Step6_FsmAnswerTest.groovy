@@ -218,7 +218,7 @@ class Step6_FsmAnswerTest extends Specification {
         ex.message == 'Operation: wrongName is invalid according to transition specification'
     }
 
-    def 'when argument of the operation is illegal according to transition specification - error'() {
+    def 'when argument of the operation "on" is illegal according to transition specification - error'() {
         when: 'initialState accepts only strings'
         Step6_FsmAnswer.create {
             add { on 1 }
@@ -227,6 +227,28 @@ class Step6_FsmAnswerTest extends Specification {
         then:
         Step5_InvalidTransitionSpecOperationAnswer ex = thrown()
         ex.message == 'Operation: on is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation "from" is illegal according to transition specification - error'() {
+        when: 'initialState accepts only strings'
+        Step6_FsmAnswer.create {
+            add { from 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationAnswer ex = thrown()
+        ex.message == 'Operation: from is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation "into" is illegal according to transition specification - error'() {
+        when: 'initialState accepts only strings'
+        Step6_FsmAnswer.create {
+            add { into 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationAnswer ex = thrown()
+        ex.message == 'Operation: into is invalid according to transition specification'
     }
 }
 
