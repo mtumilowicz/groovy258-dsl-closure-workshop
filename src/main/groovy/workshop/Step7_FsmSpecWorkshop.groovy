@@ -1,8 +1,6 @@
 package workshop
 
-import groovy.transform.PackageScope
-
-@PackageScope
+// package scope
 class Step7_FsmSpecWorkshop {
 
     // fsm spec is as simple as it can be - it is a builder

@@ -1,4 +1,5 @@
 package workshop
+
 // immutable, toString
 class Step6_FsmWorkshop {
 
