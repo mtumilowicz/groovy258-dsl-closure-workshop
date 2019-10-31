@@ -6,6 +6,12 @@
 * https://github.com/PolomskiBartlomiej/groovy-dsl-statemachine
 * https://github.com/mtumilowicz/groovy-dsl
 * https://www.techopedia.com/definition/16447/state-machine
+* https://en.wikipedia.org/wiki/Finite-state_machine
+* https://en.wikipedia.org/wiki/Model_of_computation
+* https://en.wikipedia.org/wiki/Abstract_machine
+* https://en.wikipedia.org/wiki/Deterministic_finite_automaton
+* https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
+* https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
 * simplest infinite state machine: state: consecutive numbers, function: incrementation
 
 # preface
@@ -17,22 +23,7 @@
     * how properly write tests
 * workshop: `workshop` package, answers: `answers` package
 
-**Domain-Specific Languages** are small languages, focused on a particular 
-aspect of a software system. They allow business experts to read or write 
-code without having to be  programming experts.  
-DSLs come in two main forms:
-* **external** - language that's parsed independently of the host general purpose 
-language, examples: `regular expressions` and `CSS`.
-* **internal** - particular form of `API` in a host general purpose language, often 
-referred to as a fluent interface, examples: `Spock` and `Mockito`.
-
-`Groovy` has many features that make it great for writing `DSLs`:
-* [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
-* Parentheses and dots `(.)` are optional.
-* The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
-* [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
-`propertyMissing` features.
-
+## closure
 ## delegate
 Within `Groovy` you can take a closure as a parameter and then call it using a 
 local variable as a delegate.
@@ -54,7 +45,25 @@ class Y {
 ```
 println Y.handler {setValue 'test'} // X(test)
 ```
-## optional parentheses and dots
+
+## dsl
+**Domain-Specific Languages** are small languages, focused on a particular 
+aspect of a software system. They allow business experts to read or write 
+code without having to be  programming experts.  
+DSLs come in two main forms:
+* **external** - language that's parsed independently of the host general purpose 
+language, examples: `regular expressions` and `CSS`.
+* **internal** - particular form of `API` in a host general purpose language, often 
+referred to as a fluent interface, examples: `Spock` and `Mockito`.
+
+`Groovy` has many features that make it great for writing `DSLs`:
+* [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
+* Parentheses and dots `(.)` are optional.
+* The ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
+* [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
+`propertyMissing` features.
+
+### optional parentheses and dots
 In `Groovy` it's possible to omit parentheses and dots
 ```
 X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
@@ -75,7 +84,8 @@ class X {
     }
 }
 ```
-## metaprogramming (missing methods and properties)
+
+### metaprogramming (missing methods and properties)
 `Groovy` provides a way to implement functionality at runtime via the methods:
 * `methodMissing(String name, args)` - invoked only in the case of a 
 failed method dispatch when no method can be found for the given name and/or 
@@ -105,6 +115,29 @@ x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3
 x.nonExsistingProperty // propertyMissing: nonExsistingProperty
 x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
 ```
+
+## state machine
+A finite-state machine (FSM) or finite-state automaton (FSA, plural: automata), finite automaton, or simply 
+a state machine, is a mathematical model of computation. It is an abstract machine that can be in exactly one 
+of a finite number of states at any given time. The FSM can change from one state to another in response to 
+some external inputs and/or a condition is satisfied; the change from one state to another is called a 
+transition.[1] An FSM is defined by a list of its states, its initial state, and the conditions for each 
+transition. Finite state machines are of two types – deterministic finite state machines and non-deterministic 
+finite state machines.
+
+The finite state machine has less computational power than some other models of computation such as the Turing 
+machine.[3] The computational power distinction means there are computational tasks that a Turing machine can do 
+but a FSM cannot.
+
+ a finite state machine is called a deterministic finite automaton (DFA), if
+
+each of its transitions is uniquely determined by its source state and input symbol, and
+reading an input symbol is required for each state transition.
+A nondeterministic finite automaton (NFA), or nondeterministic finite state machine, does not need to obey these restrictions.
+
+An abstract machine, also called an abstract computer, is a theoretical model of a computer hardware or software system
+
+A typical abstract machine consists of a definition in terms of input, output, and the set of allowable operations used to turn the former into the latter.
 # project
 Elaborated above mechanisms used:
 * closures with delegation:
