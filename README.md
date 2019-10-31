@@ -138,6 +138,14 @@ A nondeterministic finite automaton (NFA), or nondeterministic finite state mach
 An abstract machine, also called an abstract computer, is a theoretical model of a computer hardware or software system
 
 A typical abstract machine consists of a definition in terms of input, output, and the set of allowable operations used to turn the former into the latter.
+
+A Finite State Machine, or FSM, is a computation model that can be used to simulate sequential logic, or, in other words, to represent and control execution flow.
+
+A Finite State Machine is a model of computation based on a hypothetical machine made of one or more states. Only one single state of this machine can be active at the same time. It means the machine has to transition from one state to another in to perform different actions.
+
+Coin-operated turnstile
+States: locked, unlocked
+Transitions: pointing a coin in the slot will unlock the turnstile, pushing the arm of the unlocked turnstile will let the costumer pass and lock the turnstile again
 # project
 Elaborated above mechanisms used:
 * closures with delegation:
