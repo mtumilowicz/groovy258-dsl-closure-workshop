@@ -10,7 +10,7 @@ class Step3_TransitionAnswer {
     String event = ''
     Step2_StateFlowAnswer stateFlow = new Step2_StateFlowAnswer()
 
-    static Step3_TransitionAnswer make(transitionRecipe) {
+    static Step3_TransitionAnswer make(Closure transitionRecipe) {
         Step4_TransitionSpecAnswer.make transitionRecipe
     }
 
