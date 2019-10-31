@@ -13,11 +13,11 @@ class Step7_FsmSpecWorkshop {
         // build transition from specification
     }
 
-    def initialState(state) {
+    def initialState(String state) {
         // set initial state, return this
     }
 
-    def add(transitionRecipe) {
+    def add(Closure transitionRecipe) {
         // create transition and put it in transitions, return this
         // hint: <<, Step3_TransitionWorkshop.make
     }
@@ -27,11 +27,11 @@ class Step7_FsmSpecWorkshop {
         // return Step6_FsmWorkshop
     }
 
-    def methodMissing(methodName, args) {
+    def methodMissing(String methodName, args) {
         throw new Step8_InvalidFsmSpecOperationWorkshop(methodName)
     }
 
-    def propertyMissing(propertyName) {
+    def propertyMissing(String propertyName) {
         throw new Step8_InvalidFsmSpecOperationWorkshop(propertyName)
     }
 }

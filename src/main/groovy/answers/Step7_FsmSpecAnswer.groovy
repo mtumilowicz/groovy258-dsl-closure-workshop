@@ -16,12 +16,12 @@ class Step7_FsmSpecAnswer {
         fsmBuilder.build()
     }
 
-    def initialState(state) {
+    def initialState(String state) {
         initialState = new Step1_StateAnswer(state)
         this
     }
 
-    def add(transitionRecipe) {
+    def add(Closure transitionRecipe) {
         transitions << Step3_TransitionAnswer.make(transitionRecipe)
         this
     }
@@ -33,11 +33,11 @@ class Step7_FsmSpecAnswer {
         new Step6_FsmAnswer(map, initialState, initialState)
     }
 
-    def methodMissing(methodName, args) {
+    def methodMissing(String methodName, args) {
         throw new Step8_InvalidFsmSpecOperationAnswer(methodName)
     }
 
-    def propertyMissing(propertyName) {
+    def propertyMissing(String propertyName) {
         throw new Step8_InvalidFsmSpecOperationAnswer(propertyName)
     }
 }

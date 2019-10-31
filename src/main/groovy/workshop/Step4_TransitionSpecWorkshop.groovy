@@ -15,15 +15,15 @@ class Step4_TransitionSpecWorkshop {
         // build transition from specification
     }
 
-    def on(event) {
+    def on(String event) {
         // set event, return this
     }
 
-    def from(state) {
+    def from(String state) {
         // set state, return this
     }
 
-    def into(state) {
+    def into(String state) {
         // set state, return this
     }
 
@@ -31,11 +31,11 @@ class Step4_TransitionSpecWorkshop {
         // build Step3_TransitionWorkshop
     }
 
-    def methodMissing(methodName, args) {
+    def methodMissing(String methodName, args) {
         // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
     }
 
-    def propertyMissing(propertyName) {
+    def propertyMissing(String propertyName) {
         // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
     }
 }
