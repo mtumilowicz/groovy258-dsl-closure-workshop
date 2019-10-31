@@ -1,8 +1,32 @@
 package workshop
 
+
 import spock.lang.Specification
 
 class Step6_FsmWorkshopTest extends Specification {
+
+    def 'create empty fsm'() {
+
+        when:
+        def fsm = Step6_FsmWorkshop.create {
+        }
+
+        then:
+        !fsm.initial
+        fsm.transitions.size() == 0
+    }
+
+    def 'create fsm with empty transition'() {
+
+        when:
+        def fsm = Step6_FsmWorkshop.create {
+            add {}
+        }
+
+        then:
+        fsm.transitions.size() == 1
+        fsm.transitions[null] == Step2_StateFlowWorkshop.of(null, null)
+    }
 
     def "create fsm with initial state and two transitions"() {
 
@@ -169,7 +193,7 @@ class Step6_FsmWorkshopTest extends Specification {
         given: 'create fsm with transition designed for state1'
         def fsm = Step6_FsmWorkshop.create {
             initialState 'initialState'
-            add {on 'event' from 'initialState' into 'state2'}
+            add { on 'event' from 'initialState' into 'state2' }
         }
 
         and: 'state changes to state2'
@@ -196,7 +220,18 @@ class Step6_FsmWorkshopTest extends Specification {
         ex.message == 'Operation: wrongName is invalid according to fsm specification'
     }
 
-    def 'when argument of the operation is illegal according to fsm specification - error'() {
+    def 'when operation and argument is illegal according to fsm specification - error'() {
+        when: 'wrongName is not defined '
+        Step6_FsmWorkshop.create {
+            wrongName 1
+        }
+
+        then:
+        Step8_InvalidFsmSpecOperationWorkshop ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to fsm specification'
+    }
+
+    def 'when argument of the initialState is illegal according to fsm specification - error'() {
         when: 'initialState accepts only strings'
         Step6_FsmWorkshop.create {
             initialState 1
@@ -205,6 +240,17 @@ class Step6_FsmWorkshopTest extends Specification {
         then:
         Step8_InvalidFsmSpecOperationWorkshop ex = thrown()
         ex.message == 'Operation: initialState is invalid according to fsm specification'
+    }
+
+    def 'when argument of the add is illegal according to fsm specification - error'() {
+        when: 'add accepts only closures'
+        Step6_FsmWorkshop.create {
+            add 1
+        }
+
+        then:
+        Step8_InvalidFsmSpecOperationWorkshop ex = thrown()
+        ex.message == 'Operation: add is invalid according to fsm specification'
     }
 
     def 'when operation is illegal according to transition specification - error'() {
@@ -218,8 +264,19 @@ class Step6_FsmWorkshopTest extends Specification {
         ex.message == 'Operation: wrongName is invalid according to transition specification'
     }
 
-    def 'when argument of the operation is illegal according to transition specification - error'() {
-        when: 'initialState accepts only strings'
+    def 'when operation and argument is illegal according to transition specification - error'() {
+        when: 'wrongName is not defined'
+        Step6_FsmWorkshop.create {
+            add { wrongName 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationWorkshop ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation "on" is illegal according to transition specification - error'() {
+        when: 'on accepts only strings'
         Step6_FsmWorkshop.create {
             add { on 1 }
         }
@@ -227,6 +284,28 @@ class Step6_FsmWorkshopTest extends Specification {
         then:
         Step5_InvalidTransitionSpecOperationWorkshop ex = thrown()
         ex.message == 'Operation: on is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation "from" is illegal according to transition specification - error'() {
+        when: 'from accepts only strings'
+        Step6_FsmWorkshop.create {
+            add { from 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationWorkshop ex = thrown()
+        ex.message == 'Operation: from is invalid according to transition specification'
+    }
+
+    def 'when argument of the operation "into" is illegal according to transition specification - error'() {
+        when: 'into accepts only strings'
+        Step6_FsmWorkshop.create {
+            add { into 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationWorkshop ex = thrown()
+        ex.message == 'Operation: into is invalid according to transition specification'
     }
 }
 
