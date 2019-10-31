@@ -24,39 +24,34 @@
 * workshop: `workshop` package, answers: `answers` package
 
 ## closure
- A closure in Groovy is **an open, anonymous, block of code** that can 
- take arguments, return a value and be assigned to a variable. A closure 
- may reference variables declared in its surrounding scope. In opposition to 
- the formal definition of a closure, Closure in the Groovy language **can 
+* is **an open, anonymous, block of code** that can 
+ take arguments, return a value and be assigned to a variable
+* may reference variables declared in its surrounding scope
+* in opposition to the formal definition of a closure, Closure in the Groovy language **can 
  also contain free variables which are defined outside of its surrounding 
- scope**. While breaking the formal concept of a closure, it offers a 
- variety of advantages which are described in this chapter.
- 
-  Groovy defines closures as instances of the Closure class. It makes 
-  it very different from lambda expressions in Java 8. Delegation is a 
-  key concept in Groovy closures which has no equivalent in lambdas.
+ scope**.
+* Groovy defines closures as instances of the Closure class. 
+* very different from lambda expressions in Java 8
+    * delegation is a key concept in Groovy closures which has no equivalent in lambdas
+* closure defines 3 distinct properties:
+    * **this** corresponds to the enclosing class where the closure is 
+    defined
+    * **owner** corresponds to the enclosing object where the closure is 
+    defined, which may be either a class or a closure
+    * **delegate** corresponds to a third party object where methods 
+    calls or properties are resolved whenever the receiver of the message 
+    is not defined
 
- * **this** corresponds to the enclosing class where the closure is 
- defined.
- * **owner** corresponds to the enclosing object where the closure is 
- defined, which may be either a class or a closure.
- * **delegate** corresponds to a third party object where methods 
- calls or properties are resolved whenever the receiver of the message 
- is not defined.
+## resolving strategies
+* **Note that local variables are always looked up first, 
+independently of the resolution strategy.**
+* **OWNER_FIRST** - the closure will attempt 
+to resolve property references and methods to the owner first, then 
+the delegate - **this is the default strategy**.
+* **DELEGATE_FIRST** - the closure will attempt to resolve property 
+references and methods to the delegate first then the owner.
 
-# resolving strategies
- ## summary
- **Note that local variables are always looked up first, 
- independently of the resolution strategy.**
- 
- * **OWNER_FIRST** - the closure will attempt 
- to resolve property references and methods to the owner first, then 
- the delegate - **this is the default strategy**.
- 
- * **DELEGATE_FIRST** - the closure will attempt to resolve property 
- references and methods to the delegate first then the owner.
- 
- * others covered in: https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
+* others covered in: https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
 
 ## delegate
 Within `Groovy` you can take a closure as a parameter and then call it using a 
