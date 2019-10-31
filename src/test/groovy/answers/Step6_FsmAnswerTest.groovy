@@ -4,6 +4,29 @@ import spock.lang.Specification
 
 class Step6_FsmAnswerTest extends Specification {
 
+    def 'create empty fsm'() {
+
+        when:
+        def fsm = Step6_FsmAnswer.create {
+        }
+
+        then:
+        !fsm.initial
+        fsm.transitions.size() == 0
+    }
+
+    def 'create fsm with empty transition'() {
+
+        when:
+        def fsm = Step6_FsmAnswer.create {
+            add {}
+        }
+
+        then:
+        fsm.transitions.size() == 1
+        fsm.transitions[null] == Step2_StateFlowAnswer.of(null, null)
+    }
+
     def "create fsm with initial state and two transitions"() {
 
         when:
@@ -169,7 +192,7 @@ class Step6_FsmAnswerTest extends Specification {
         given: 'create fsm with transition designed for state1'
         def fsm = Step6_FsmAnswer.create {
             initialState 'initialState'
-            add {on 'event' from 'initialState' into 'state2'}
+            add { on 'event' from 'initialState' into 'state2' }
         }
 
         and: 'state changes to state2'
@@ -196,7 +219,18 @@ class Step6_FsmAnswerTest extends Specification {
         ex.message == 'Operation: wrongName is invalid according to fsm specification'
     }
 
-    def 'when argument of the operation is illegal according to fsm specification - error'() {
+    def 'when operation and argument is illegal according to fsm specification - error'() {
+        when: 'wrongName is not defined '
+        Step6_FsmAnswer.create {
+            wrongName 1
+        }
+
+        then:
+        Step8_InvalidFsmSpecOperationAnswer ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to fsm specification'
+    }
+
+    def 'when argument of the initialState is illegal according to fsm specification - error'() {
         when: 'initialState accepts only strings'
         Step6_FsmAnswer.create {
             initialState 1
@@ -205,6 +239,17 @@ class Step6_FsmAnswerTest extends Specification {
         then:
         Step8_InvalidFsmSpecOperationAnswer ex = thrown()
         ex.message == 'Operation: initialState is invalid according to fsm specification'
+    }
+
+    def 'when argument of the add is illegal according to fsm specification - error'() {
+        when: 'add accepts only closures'
+        Step6_FsmAnswer.create {
+            add 1
+        }
+
+        then:
+        Step8_InvalidFsmSpecOperationAnswer ex = thrown()
+        ex.message == 'Operation: add is invalid according to fsm specification'
     }
 
     def 'when operation is illegal according to transition specification - error'() {
@@ -218,8 +263,19 @@ class Step6_FsmAnswerTest extends Specification {
         ex.message == 'Operation: wrongName is invalid according to transition specification'
     }
 
+    def 'when operation and argument is illegal according to transition specification - error'() {
+        when: 'wrongName is not defined'
+        Step6_FsmAnswer.create {
+            add { wrongName 1 }
+        }
+
+        then:
+        Step5_InvalidTransitionSpecOperationAnswer ex = thrown()
+        ex.message == 'Operation: wrongName is invalid according to transition specification'
+    }
+
     def 'when argument of the operation "on" is illegal according to transition specification - error'() {
-        when: 'initialState accepts only strings'
+        when: 'on accepts only strings'
         Step6_FsmAnswer.create {
             add { on 1 }
         }
@@ -230,7 +286,7 @@ class Step6_FsmAnswerTest extends Specification {
     }
 
     def 'when argument of the operation "from" is illegal according to transition specification - error'() {
-        when: 'initialState accepts only strings'
+        when: 'from accepts only strings'
         Step6_FsmAnswer.create {
             add { from 1 }
         }
@@ -241,7 +297,7 @@ class Step6_FsmAnswerTest extends Specification {
     }
 
     def 'when argument of the operation "into" is illegal according to transition specification - error'() {
-        when: 'initialState accepts only strings'
+        when: 'into accepts only strings'
         Step6_FsmAnswer.create {
             add { into 1 }
         }
