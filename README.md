@@ -41,7 +41,26 @@
     * **delegate** corresponds to a third party object where methods 
     calls or properties are resolved whenever the receiver of the message 
     is not defined
-
+    ```
+    class X {
+        def hello() {
+            println "hello from X"
+        }
+    }
+    
+    class Y {
+        static def handle(closure) {
+            X x = new X()
+            closure.delegate = x
+            closure()
+        }
+    
+        static void main(String[] args) {
+            new X().hello2() // "hello from X"
+            Y.handle { hello() } // "hello from X"
+        }
+    }
+    ```
 ## resolving strategies
 * **Note that local variables are always looked up first, 
 independently of the resolution strategy.**
@@ -50,30 +69,7 @@ to resolve property references and methods to the owner first, then
 the delegate - **this is the default strategy**.
 * **DELEGATE_FIRST** - the closure will attempt to resolve property 
 references and methods to the delegate first then the owner.
-
 * others covered in: https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
-
-## delegate
-Within `Groovy` you can take a closure as a parameter and then call it using a 
-local variable as a delegate.
-```
-@ToString
-class X {
-    String value
-}
-
-class Y {
-    static def handler(closure) {
-        X x = new X()
-        closure.delegate = x
-        closure()
-        x
-    }
-}
-```
-```
-println Y.handler {setValue 'test'} // X(test)
-```
 
 ## dsl
 **Domain-Specific Languages** are small languages, focused on a particular 
