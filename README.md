@@ -89,11 +89,14 @@ code without having to be  programming experts
     referred to as a fluent interface, examples: `Spock` and `Mockito`
 
 * `Groovy` has many features that make it great for writing `DSLs`:
-    * [Closures](http://groovy-lang.org/closures.html) with [delegates](http://groovy-lang.org/closures.html#_delegate_of_a_closure).
+    * closures with delegates
     * parentheses and dots `(.)` are optional
-    * the ability to [overload operators](http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html#_operator_overloading).
-    * [Metaprogramming](http://groovy-lang.org/metaprogramming.html): `methodMissing` and 
-    `propertyMissing` features
+        * Groovy allows you to omit the parentheses for top-level expressions
+        * When a closure is the last parameter of a method call `list.each  { println it }`
+        * In some cases parentheses are required, such as when making nested method calls or when calling a method 
+        without parameters
+    * the ability to overload operators
+    * metaprogramming: `methodMissing` and `propertyMissing` features
 
 ### optional parentheses and dots
 In `Groovy` it's possible to omit parentheses and dots
