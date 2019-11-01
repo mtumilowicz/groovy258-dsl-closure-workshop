@@ -173,8 +173,8 @@ code without having to be  programming experts
     * there are computational tasks that a Turing machine can do but a FSM cannot
 * can be used to simulate sequential logic, or, in other words, to represent and control execution flow
 * elementary example: 
-    * Coin-operated turnstile
-    * States: locked, unlocked
-    * Transitions: 
+    * coin-operated turnstile
+    * states: locked, unlocked
+    * transitions: 
         * coin -> unlock
         * pushing the arm of the unlocked turnstile -> lock
