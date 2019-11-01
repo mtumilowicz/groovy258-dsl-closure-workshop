@@ -91,89 +91,79 @@ code without having to be  programming experts
 * `Groovy` has many features that make it great for writing `DSLs`:
     * closures with delegates
     * parentheses and dots `(.)` are optional
-        * Groovy allows you to omit the parentheses for top-level expressions
-        * When a closure is the last parameter of a method call `list.each  { println it }`
-        * In some cases parentheses are required, such as when making nested method calls or when calling a method 
-        without parameters
-    * the ability to overload operators
+        * `Groovy` allows you to omit the parentheses for top-level expressions
+        * when a closure is the last parameter of a method call `list.each  { println it }`
+        * in some cases parentheses are required:
+            * making nested method calls
+            * calling a method without parameters
+        ```
+        X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
+        ```
+        where:
+        ```
+        class X {
+            @Delegate
+            Integer value
+            
+            Integer take(Integer x) {
+                x
+            }
+            
+            static def resolve(Closure closure) {
+                closure.delegate = new X()
+                closure()
+            }
+        }
+        ```
+    * the ability to overload operators: https://github.com/mtumilowicz/groovy-operators-overloading
     * metaprogramming: `methodMissing` and `propertyMissing` features
-
-### optional parentheses and dots
-In `Groovy` it's possible to omit parentheses and dots
-```
-X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
-```
-where:
-```
-class X {
-    @Delegate
-    Integer value
-    
-    Integer take(Integer x) {
-        x
-    }
-    
-    static def resolve(Closure closure) {
-        closure.delegate = new X()
-        closure()
-    }
-}
-```
-
-### metaprogramming (missing methods and properties)
-`Groovy` provides a way to implement functionality at runtime via the methods:
-* `methodMissing(String name, args)` - invoked only in the case of a 
-failed method dispatch when no method can be found for the given name and/or 
-the given arguments.
-* `propertyMissing(String name)` - called only when no getter method for 
-the given property can be found at runtime.
-* `propertyMissing(String name, Object value)` - called only when no setter
-method for the given property can be found at runtime.
-```
-class X {
-    def methodMissing(String name, args) {
-        println "methodMissing: $name $args"
-    }
-
-    def propertyMissing(String name, Object value) {
-        println "propertyMissing: $name $value"
-    }
-
-    def propertyMissing(String name) {
-        println "propertyMissing: $name"
-    }
-}
-```
-```
-def x = new X()
-x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3]
-x.nonExsistingProperty // propertyMissing: nonExsistingProperty
-x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
-```
+        * `methodMissing(String name, args)` - invoked only in the case of a 
+        failed method dispatch when no method can be found for the given name and/or 
+        the given arguments.
+        * `propertyMissing(String name)` - called only when no getter method for 
+        the given property can be found at runtime.
+        * `propertyMissing(String name, Object value)` - called only when no setter
+        method for the given property can be found at runtime.
+        ```
+        class X {
+            def methodMissing(String name, args) {
+                println "methodMissing: $name $args"
+            }
+        
+            def propertyMissing(String name, Object value) {
+                println "propertyMissing: $name $value"
+            }
+        
+            def propertyMissing(String name) {
+                println "propertyMissing: $name"
+            }
+        }
+        ```
+        ```
+        def x = new X()
+        x.nonExsistingMethod "1", "2", "3" // methodMissing: nonExsistingMethod [1, 2, 3]
+        x.nonExsistingProperty // propertyMissing: nonExsistingProperty
+        x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
+        ```
 
 ## state machine
-A finite-state machine (FSM) or finite-state automaton (FSA, plural: automata), finite automaton, or simply 
-a state machine, is a mathematical model of computation. It is an abstract machine that can be in exactly one 
-of a finite number of states at any given time. The FSM can change from one state to another in response to 
-some external inputs and/or a condition is satisfied; the change from one state to another is called a 
-transition.[1] An FSM is defined by a list of its states, its initial state, and the conditions for each 
-transition. Finite state machines are of two types – deterministic finite state machines and non-deterministic 
-finite state machines.
-
-The finite state machine has less computational power than some other models of computation such as the Turing 
-machine.[3] The computational power distinction means there are computational tasks that a Turing machine can do 
-but a FSM cannot.
-
- a finite state machine is called a deterministic finite automaton (DFA), if
-
-each of its transitions is uniquely determined by its source state and input symbol, and
-reading an input symbol is required for each state transition.
-A nondeterministic finite automaton (NFA), or nondeterministic finite state machine, does not need to obey these restrictions.
-
-An abstract machine, also called an abstract computer, is a theoretical model of a computer hardware or software system
-
-A typical abstract machine consists of a definition in terms of input, output, and the set of allowable operations used to turn the former into the latter.
-
+finite-state machine (FSM)
+    * is a mathematical model of computation
+    * is an abstract machine that can be in exactly one of a finite number of states at any given time
+        * abstract machine is a theoretical model of a computer hardware or software system
+        * abstract machine consists of a definition in terms of input, output, and the set of allowable operations 
+        used to turn the former into the latter
+    * can change from one state to another in response to some external inputs and/or a condition is satisfied
+    * the change from one state to another is called a transition
+    * is defined by a list of its states, its initial state, and the conditions for each transition 
+* finite state machines are of two types
+    * deterministic
+        * each of its transitions is uniquely determined by its source state and input symbol
+        * reading an input symbol is required for each state transition
+    * non-deterministic - does not need to obey above restrictions
+* has less computational power than some other models of computation such as the Turing machine
+    * there are computational tasks that a Turing machine can do but a FSM cannot
+    
 A Finite State Machine, or FSM, is a computation model that can be used to simulate sequential logic, or, in other words, to represent and control execution flow.
 
 A Finite State Machine is a model of computation based on a hypothetical machine made of one or more states. Only one single state of this machine can be active at the same time. It means the machine has to transition from one state to another in to perform different actions.
