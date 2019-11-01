@@ -177,4 +177,4 @@ code without having to be  programming experts
     * states: locked, unlocked
     * transitions: 
         * coin -> unlock
-        * pushing the arm of the unlocked turnstile -> lock
+        * pushing the arm -> lock
