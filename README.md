@@ -68,6 +68,10 @@
         }
     }
     ```
+* `closure.rehydrate(delegate, owner, thisObject)` - returns a copy of this closure 
+for which the `delegate`, `owner` and `thisObject` are replaced with the supplied 
+parameters
+
 ## resolving strategies
 * **Note that local variables are always looked up first, 
 independently of the resolution strategy.**
@@ -173,26 +177,3 @@ finite-state machine (FSM)
     * Transitions: 
         * coin -> unlock
         * pushing the arm of the unlocked turnstile -> lock
-
-# project
-* `closure.rehydrate(delegate, owner, thisObject)` - returns a copy of this closure 
-for which the `delegate`, `owner` and `thisObject` are replaced with the supplied 
-parameters.
-
-*  metaprogramming:  
-    we dynamically add sections with custom names and bodies
-    ```
-    def methodMissing(String methodName, args) {
-        def section = new ToDo(title: methodName, body: args[0])
-        toDo << section
-    }    
-    ```
-* optional parentheses:
-    ```
-    DeadlineMemo.make {
-        title 'IMPORTANT'
-        deadline '2020-01-01'
-        idea 'Be a better programmer!'
-        plan 'Commit to github everyday!'
-        xml
-    }
