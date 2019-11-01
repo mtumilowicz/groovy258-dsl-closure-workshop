@@ -1,17 +1,18 @@
 # groovy258-dsl-closure-workshop
 
-* https://groovy-lang.org/closures.html
-* https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
-* http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html
-* https://github.com/PolomskiBartlomiej/groovy-dsl-statemachine
-* https://github.com/mtumilowicz/groovy-dsl
-* https://www.techopedia.com/definition/16447/state-machine
-* https://en.wikipedia.org/wiki/Finite-state_machine
-* https://en.wikipedia.org/wiki/Model_of_computation
-* https://en.wikipedia.org/wiki/Abstract_machine
-* https://en.wikipedia.org/wiki/Deterministic_finite_automaton
-* https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
-* https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
+References:
+    * https://groovy-lang.org/closures.html
+    * https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
+    * http://docs.groovy-lang.org/docs/latest/html/documentation/core-domain-specific-languages.html
+    * https://github.com/PolomskiBartlomiej/groovy-dsl-statemachine
+    * https://github.com/mtumilowicz/groovy-dsl
+    * https://www.techopedia.com/definition/16447/state-machine
+    * https://en.wikipedia.org/wiki/Finite-state_machine
+    * https://en.wikipedia.org/wiki/Model_of_computation
+    * https://en.wikipedia.org/wiki/Abstract_machine
+    * https://en.wikipedia.org/wiki/Deterministic_finite_automaton
+    * https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
+    * https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
 
 # preface
 * goals of this workshop:
