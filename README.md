@@ -12,7 +12,6 @@
 * https://en.wikipedia.org/wiki/Deterministic_finite_automaton
 * https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
 * https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
-* simplest infinite state machine: state: consecutive numbers, function: incrementation
 
 # preface
 * goals of this workshop:
@@ -23,7 +22,7 @@
     * how properly write tests
 * workshop: `workshop` package, answers: `answers` package
 
-## closure
+# closure
 * is **an open, anonymous, block of code** that can 
  take arguments, return a value and be assigned to a variable
 * may reference variables declared in its surrounding scope
@@ -82,7 +81,7 @@ the delegate - **this is the default strategy**.
 references and methods to the delegate first then the owner.
 * others covered in: https://github.com/mtumilowicz/groovy-closure-owner-delegate-this
 
-## dsl
+# dsl
 * **Domain-Specific Languages** are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
 code without having to be  programming experts
@@ -150,8 +149,9 @@ code without having to be  programming experts
         x.settingNonExsistingProperty = 5 // "propertyMissing: settingNonExsistingProperty 5"
         ```
 
-## state machine
-finite-state machine (FSM)
+# state machine
+* simplest infinite state machine: state: consecutive numbers, function: incrementation
+* finite-state machine (FSM)
     * it is a model of computation based on a hypothetical machine made of one or more states
         * only one single state of this machine can be active at the same time
         * machine has to switch from one state to another in order to perform different actions
