@@ -148,6 +148,9 @@ code without having to be  programming experts
 
 ## state machine
 finite-state machine (FSM)
+    * it is a model of computation based on a hypothetical machine made of one or more states
+        * only one single state of this machine can be active at the same time
+        * machine has to switch from one state to another in order to perform different actions
     * is a mathematical model of computation
     * is an abstract machine that can be in exactly one of a finite number of states at any given time
         * abstract machine is a theoretical model of a computer hardware or software system
@@ -163,14 +166,13 @@ finite-state machine (FSM)
     * non-deterministic - does not need to obey above restrictions
 * has less computational power than some other models of computation such as the Turing machine
     * there are computational tasks that a Turing machine can do but a FSM cannot
-    
-A Finite State Machine, or FSM, is a computation model that can be used to simulate sequential logic, or, in other words, to represent and control execution flow.
-
-A Finite State Machine is a model of computation based on a hypothetical machine made of one or more states. Only one single state of this machine can be active at the same time. It means the machine has to transition from one state to another in to perform different actions.
-
-Coin-operated turnstile
-States: locked, unlocked
-Transitions: pointing a coin in the slot will unlock the turnstile, pushing the arm of the unlocked turnstile will let the costumer pass and lock the turnstile again
+* can be used to simulate sequential logic, or, in other words, to represent and control execution flow
+* elementary example: 
+    * Coin-operated turnstile
+    * States: locked, unlocked
+    * Transitions: 
+        * coin -> unlock
+        * pushing the arm of the unlocked turnstile -> lock
 
 # project
 * `closure.rehydrate(delegate, owner, thisObject)` - returns a copy of this closure 
