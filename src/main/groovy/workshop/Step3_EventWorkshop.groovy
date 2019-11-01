@@ -1,8 +1,8 @@
 package workshop
 
 // immutable
-// encapsulates state, hint: one field - raw state
-class Step1_StateWorkshop {
+// encapsulates state, hint: one field - raw event
+class Step3_EventWorkshop {
 
     @Override
     String toString() {

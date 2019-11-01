@@ -1,13 +1,13 @@
 package workshop
 
 // package scope
-// it is a Step3_TransitionWorkshop builder
-class Step4_TransitionSpecWorkshop {
+// it is a Step4_TransitionWorkshop builder
+class Step5_TransitionSpecWorkshop {
 
     // hint: three fields - event, stateFrom, stateTo
 
-    // build Step3_TransitionWorkshop
-    static Step3_TransitionWorkshop make(transitionRecipe) {
+    // build Step4_TransitionWorkshop
+    static Step4_TransitionWorkshop make(transitionRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification
         // set strategy of rehydrated closure to delegate_only
@@ -27,15 +27,15 @@ class Step4_TransitionSpecWorkshop {
         // set state, return this
     }
 
-    Step3_TransitionWorkshop build() {
-        // build Step3_TransitionWorkshop
+    Step4_TransitionWorkshop build() {
+        // build Step4_TransitionWorkshop
     }
 
     def methodMissing(String methodName, args) {
-        // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
+        // throw appropriate exception: Step6_InvalidTransitionSpecOperationWorkshop
     }
 
     def propertyMissing(String propertyName) {
-        // throw appropriate exception: Step5_InvalidTransitionSpecOperationWorkshop
+        // throw appropriate exception: Step6_InvalidTransitionSpecOperationWorkshop
     }
 }

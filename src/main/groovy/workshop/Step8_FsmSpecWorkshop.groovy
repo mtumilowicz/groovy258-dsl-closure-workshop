@@ -1,11 +1,11 @@
 package workshop
 
 // package scope
-// it is a Step6_FsmWorkshop builder, hint: two fields - list of transitions, initial state
-class Step7_FsmSpecWorkshop {
+// it is a Step7_FsmWorkshop builder, hint: two fields - list of transitionsRecipe, initial state
+class Step8_FsmSpecWorkshop {
 
-    // build Step6_FsmWorkshop
-    static Step6_FsmWorkshop buildUsing(fsmRecipe) {
+    // build Step7_FsmWorkshop
+    static Step7_FsmWorkshop buildUsing(fsmRecipe) {
         // create object of specification
         // rehydrate closure argument: delegate - specification, owner - this, this -> specification
         // set strategy of rehydrated closure to delegate_only
@@ -19,19 +19,19 @@ class Step7_FsmSpecWorkshop {
 
     def add(Closure transitionRecipe) {
         // create transition and put it in transitions, return this
-        // hint: <<, Step3_TransitionWorkshop.make
+        // hint: <<, Step4_TransitionWorkshop.make
     }
 
-    Step6_FsmWorkshop build() {
-        // create map with entries (event, stateFlow), hint: transitions.collectEntries {}
-        // return Step6_FsmWorkshop
+    Step7_FsmWorkshop build() {
+        // create map with entries (event, stateFlow), hint: transitions.collect {}, Step4_TransitionAnswer.make, transitions.collectEntries {}
+        // return Step7_FsmWorkshop
     }
 
     def methodMissing(String methodName, args) {
-        throw new Step8_InvalidFsmSpecOperationWorkshop(methodName)
+        throw new Step9_InvalidFsmSpecOperationWorkshop(methodName)
     }
 
     def propertyMissing(String propertyName) {
-        throw new Step8_InvalidFsmSpecOperationWorkshop(propertyName)
+        throw new Step9_InvalidFsmSpecOperationWorkshop(propertyName)
     }
 }

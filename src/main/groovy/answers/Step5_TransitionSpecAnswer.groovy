@@ -3,14 +3,14 @@ package answers
 import groovy.transform.PackageScope
 
 @PackageScope
-class Step4_TransitionSpecAnswer {
+class Step5_TransitionSpecAnswer {
 
     String event
     String stateFrom
     String stateTo
 
-    static Step3_TransitionAnswer make(transitionRecipe) {
-        def transitionSpec = new Step4_TransitionSpecAnswer()
+    static Step4_TransitionAnswer make(transitionRecipe) {
+        def transitionSpec = new Step5_TransitionSpecAnswer()
         def transition = transitionRecipe.rehydrate(transitionSpec, this, transitionSpec)
         transition.resolveStrategy = Closure.DELEGATE_ONLY
         transition()
@@ -32,15 +32,18 @@ class Step4_TransitionSpecAnswer {
         this
     }
 
-    Step3_TransitionAnswer build() {
-        new Step3_TransitionAnswer(event: event, stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo))
+    Step4_TransitionAnswer build() {
+        new Step4_TransitionAnswer(
+                event: new Step3_EventAnswer(event),
+                stateFlow: Step2_StateFlowAnswer.of(stateFrom, stateTo)
+        )
     }
 
     def methodMissing(String methodName, args) {
-        throw new Step5_InvalidTransitionSpecOperationAnswer(methodName)
+        throw new Step6_InvalidTransitionSpecOperationAnswer(methodName)
     }
 
     def propertyMissing(String propertyName) {
-        throw new Step5_InvalidTransitionSpecOperationAnswer(propertyName)
+        throw new Step6_InvalidTransitionSpecOperationAnswer(propertyName)
     }
 }
