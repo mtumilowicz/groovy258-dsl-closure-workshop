@@ -20,7 +20,7 @@
 * goals of this workshop:
     * formally introducing groovy's closure
     * understanding what is state machine and how it works
-    * becoming acquainted with DSL and its 
+    * becoming acquainted with DSL and how groovy supports it
     * how properly structure projects
     * how properly write tests
 * workshop: `workshop` package, answers: `answers` package
