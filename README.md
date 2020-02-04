@@ -15,6 +15,7 @@
     * https://en.wikipedia.org/wiki/Deterministic_finite_automaton
     * https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
     * https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
+    * https://www.quora.com/What-is-the-difference-between-a-finite-state-machine-and-a-Turing-machine
 
 # preface
 * goals of this workshop:
@@ -174,8 +175,8 @@ code without having to be programming experts
     * non-deterministic - does not need to obey above restrictions
 * has less computational power than some other models of computation such as the Turing machine
     * there are computational tasks that a Turing machine can do but a FSM cannot
-    * The only memory it has is what state it is in
-    * A Turing machine is a finite state machine plus a tape memory
+    * the only memory it has is what state it is in
+    * a Turing machine is a finite state machine plus a tape memory
       * each transition may be accompanied by an operation on the tape (move, read, write)
 * can be used to simulate sequential logic, or, in other words, to represent and control execution flow
 * elementary example: 
