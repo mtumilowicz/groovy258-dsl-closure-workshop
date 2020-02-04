@@ -21,7 +21,6 @@
     * formally introducing groovy's closure
     * understanding what is state machine and how it works
     * becoming acquainted with DSL and how groovy supports it
-    * how properly structure projects
     * how properly write tests
 * workshop: `workshop` package, answers: `answers` package
 
@@ -32,7 +31,7 @@
 * in opposition to the formal definition of a closure, Closure in the Groovy language **can 
  also contain free variables which are defined outside of its surrounding 
  scope**.
-* Groovy defines closures as instances of the Closure class. 
+* Groovy defines closures as instances of the Closure class
 * very different from lambda expressions in Java 8
     * delegation is a key concept in Groovy closures which has no equivalent in lambdas
 * closure defines 3 distinct properties:
@@ -87,21 +86,16 @@ references and methods to the delegate first then the owner.
 # dsl
 * **Domain-Specific Languages** are small languages, focused on a particular 
 aspect of a software system. They allow business experts to read or write 
-code without having to be  programming experts
+code without having to be programming experts
 * DSLs come in two main forms:
-    * **external** - language that's parsed independently of the host general purpose 
+    * **external** - language that is parsed independently of the general purpose 
     language, examples: `regular expressions` and `CSS`
-    * **internal** - particular form of `API` in a host general purpose language, often 
+    * **internal** - particular form of `API` in a general purpose language, often 
     referred to as a fluent interface, examples: `Spock` and `Mockito`
 
 * `Groovy` has many features that make it great for writing `DSLs`:
     * closures with delegates
     * parentheses and dots `(.)` are optional
-        * `Groovy` allows you to omit the parentheses for top-level expressions
-        * when a closure is the last parameter of a method call `list.each  { println it }`
-        * in some cases parentheses are required:
-            * making nested method calls
-            * calling a method without parameters
         ```
         X.resolve {take 10 plus 30 minus 15} // it's same as: new X().take(10).plus(30).minus(15)
         ```
@@ -121,15 +115,20 @@ code without having to be  programming experts
             }
         }
         ```
+        * `Groovy` allows you to omit the parentheses for top-level expressions
+        * when a closure is the last parameter of a method call `list.each  { println it }`
+        * in some cases parentheses are required:
+            * making nested method calls
+            * calling a method without parameters
     * the ability to overload operators: https://github.com/mtumilowicz/groovy-operators-overloading
     * metaprogramming: `methodMissing` and `propertyMissing` features
         * `methodMissing(String name, args)` - invoked only in the case of a 
         failed method dispatch when no method can be found for the given name and/or 
-        the given arguments.
+        the given arguments
         * `propertyMissing(String name)` - called only when no getter method for 
-        the given property can be found at runtime.
+        the given property can be found at runtime
         * `propertyMissing(String name, Object value)` - called only when no setter
-        method for the given property can be found at runtime.
+        method for the given property can be found at runtime
         ```
         class X {
             def methodMissing(String name, args) {
@@ -153,7 +152,9 @@ code without having to be  programming experts
         ```
 
 # state machine
-* simplest infinite state machine: state: consecutive numbers, function: incrementation
+* simplest infinite state machine
+   * state: consecutive numbers, 
+   * function: incrementation
 * finite-state machine (FSM)
     * it is a model of computation based on a hypothetical machine made of one or more states
         * only one single state of this machine can be active at the same time
@@ -173,6 +174,9 @@ code without having to be  programming experts
     * non-deterministic - does not need to obey above restrictions
 * has less computational power than some other models of computation such as the Turing machine
     * there are computational tasks that a Turing machine can do but a FSM cannot
+    * The only memory it has is what state it is in
+    * A Turing machine is a finite state machine plus a tape memory
+      * each transition may be accompanied by an operation on the tape (move, read, write)
 * can be used to simulate sequential logic, or, in other words, to represent and control execution flow
 * elementary example: 
     * coin-operated turnstile
