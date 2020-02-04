@@ -16,6 +16,7 @@
     * https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton
     * https://medium.com/@mlbors/what-is-a-finite-state-machine-6d8dec727e2c
     * https://www.quora.com/What-is-the-difference-between-a-finite-state-machine-and-a-Turing-machine
+    * https://www.i-programmer.info/babbages-bag/223-finite-state-machines.html?start=1
 
 # preface
 * goals of this workshop:
@@ -175,6 +176,10 @@ code without having to be programming experts
     * non-deterministic - does not need to obey above restrictions
 * has less computational power than some other models of computation such as the Turing machine
     * there are computational tasks that a Turing machine can do but a FSM cannot
+         * you can build a finite state machine that accepts AAABAAA and palindromes up to this 
+         size but unless you build the machine to do it won't recognize AAAABAAAA
+         * any finite state machine that you build will have a limit on the number of repeats it 
+         can recognize and so you can always find a palindromic sequence that it can't recognize 
     * the only memory it has is what state it is in
     * a Turing machine is a finite state machine plus a tape memory
       * each transition may be accompanied by an operation on the tape (move, read, write)
