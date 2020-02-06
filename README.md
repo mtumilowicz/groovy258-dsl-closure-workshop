@@ -180,3 +180,39 @@ code without having to be  programming experts
     * transitions: 
         * coin -> unlock
         * pushing the arm -> lock
+        
+# project description
+* at the end of the workshop
+    1. state machine should look roughly like
+        ```
+        Map<Event, StateFlow> transitions // StateFlow(State from, State to)
+        State initial
+        State state
+        ```
+        with method fire to move from state to state when given event
+        ```
+        def fire(event) {
+            // if transition is possible - move to given state
+            // otherwise - do nothing
+        }
+        ```
+    1. and we could program it using DSL in a really simple manner
+        ```
+        def fsm = Step7_FsmWorkshop.create {
+            initialState locked
+            add { on coin from locked into unlocked }
+            add { on pass from unlocked into locked }
+        }
+
+        // initially is locked
+        fsm.initial == new State(locked)
+        fsm.current == new State(locked)
+        // we insert a coin 
+        fsm.fire(coin)
+        // unlocked 
+        fsm.current = new State(unlocked)
+        // we pass through 
+        fsm.fire(pass)
+        // and is locked again 
+        fsm.current = new State(locked)
+        ````
