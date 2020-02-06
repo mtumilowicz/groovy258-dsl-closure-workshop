@@ -209,7 +209,7 @@ code without having to be programming experts
         ```
     1. and we could program it using DSL in a really simple manner
         ```
-        def fsm = Step7_FsmWorkshop.create {
+        def fsm = Fsm.create {
             initialState locked
             add { on coin from locked into unlocked }
             add { on pass from unlocked into locked }
