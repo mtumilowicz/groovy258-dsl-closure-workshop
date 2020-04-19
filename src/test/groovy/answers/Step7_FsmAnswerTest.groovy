@@ -171,7 +171,7 @@ class Step7_FsmAnswerTest extends Specification {
         when: 'transition is designed for current state'
         fsm = fsm.fire(_event)
 
-        then: 'stay in current state'
+        then: 'moved to stateTo'
         fsm.state == new Step1_StateAnswer(_stateTo)
     }
 
