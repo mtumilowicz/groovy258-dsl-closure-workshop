@@ -188,7 +188,7 @@ class Step7_FsmAnswerTest extends Specification {
 
     def "if we are in any state then returning to initial state means returning copy with current state set to initial state"() {
 
-        given: 'create fsm with transition designed for state1'
+        given: 'create fsm with single transition'
         def fsm = Step7_FsmAnswer.create {
             initialState 'initialState'
             add { on 'event' from 'initialState' into 'state2' }
