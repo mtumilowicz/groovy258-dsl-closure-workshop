@@ -91,9 +91,11 @@ aspect of a software system. They allow business experts to read or write
 code without having to be programming experts
 * DSLs come in two main forms:
     * **external** - language that is parsed independently of the general purpose 
-    language, examples: `regular expressions` and `CSS`
+    language
+       * examples: `regular expressions`, `CSS`, `SQL`
     * **internal** - particular form of `API` in a general purpose language, often 
-    referred to as a fluent interface, examples: `Spock` and `Mockito`
+    referred to as a fluent interface
+       * examples: `Spock` and `Mockito`
 
 * `Groovy` has many features that make it great for writing `DSLs`:
     * closures with delegates
